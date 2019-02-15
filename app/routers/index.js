@@ -1,0 +1,1 @@
+exports.feedsRouter = require('./feeds');
