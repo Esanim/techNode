@@ -19,6 +19,7 @@
     "babel-preset-es2017": "^6.24.1",
     "eslint": "^5.13.0",
     "jest": "^24.1.0",
-    "jest-environment-node": "^24.0.0"
+    "jest-environment-node": "^24.0.0",
+    "supertest": "^3.4.2"
   }
 }
