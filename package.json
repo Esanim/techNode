@@ -4,7 +4,8 @@
   "description": "",
   "main": "app/app.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "author": "",
   "license": "ISC",
@@ -12,11 +13,13 @@
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-preset-es2017": "^6.24.1",
+    "coveralls": "^3.0.2",
     "eslint": "^5.13.0",
     "jest": "^24.1.0",
     "jest-environment-node": "^24.0.0",

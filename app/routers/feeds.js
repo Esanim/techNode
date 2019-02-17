@@ -10,7 +10,7 @@ const { getFeeds } = feedsHandler;
 
 /* All the Feeds Route */
 router
-  .route('')
+  .route('/:id')
     .get(getFeeds)
 
 module.exports = router;
