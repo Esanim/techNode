@@ -8,7 +8,7 @@ function bodyParserHandler(error, request, response, next) {
   }
 }
 
-function fourZeroFourHandler(request, response, next) {
+function fourZeroFourHandler(request, response) {
   return response
     .status(404)
     .json(
@@ -20,7 +20,7 @@ function fourZeroFourHandler(request, response, next) {
     )
 }
 
-function fourZeroFiveHandler(request, response, next) {
+function fourZeroFiveHandler(request, response) {
   return response
     .status(405)
     .json(

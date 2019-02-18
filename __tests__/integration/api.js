@@ -18,11 +18,19 @@ describe('Error routes', function() {
 })
 
 describe('GET /feeds/id', () => {
-  const postId = '7d78ff348647b782cb3027d836d23e09'
-  test('get a list of feeds', async () => {
+  const postIdCorrect = '7d78ff348647b782cb3027d836d23e09'
+  const postIdWrong = 'R34sd'
+  test('get a list of feeds for the correct post id', async () => {
     await timeout(1000) // wait a second for the handler to load a file
-    const response = await request(app).get('/feeds/' + postId)
+    const response = await request(app).get('/feeds/' + postIdCorrect)
     expect(response.status).toEqual(200)
     expect(response.body).not.toEqual({})
+  })
+
+    test('get a list of feeds for the wrong post id', async () => {
+    await timeout(1000) // wait a second for the handler to load a file
+    const response = await request(app).get('/feeds/' + postIdWrong)
+    expect(response.status).toEqual(404)
+    expect(response.body.error.title).toEqual('No data')
   })
 })

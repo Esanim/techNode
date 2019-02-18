@@ -1,6 +1,7 @@
 // Declare variables
 const {feedsTransformation} = require('../transformations'),
-  fs = require('fs')
+  fs = require('fs'),
+  {APIError} = require('../helpers')
 let dataObj
 
 // Read the file and send to the callback
@@ -17,12 +18,19 @@ function handleFile(err, data) {
  */
 async function getFeeds(request, response, next) {
   const {id} = request.params
+  // check if data is loaded
+  if (!dataObj) {
+    return response.json({})
+  }
+  // aggregate the data
   try {
-    if (!dataObj) {
-      return response.json({})
+    const feedData = feedsTransformation.processFeedsData(dataObj, id)
+    if (!feedData) {
+      return response
+        .status(404)
+        .json(new APIError(404, 'No data', `No data for the post id: ${id}.`))
     }
-
-    return response.json(feedsTransformation.processFeedsData(dataObj, id))
+    return response.json(feedData)
   } catch (err) {
     return next(err)
   }

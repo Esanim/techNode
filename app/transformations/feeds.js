@@ -4,15 +4,12 @@ const {ramdaUtils} = require('../utils')
 
 /**
  * An algorithm for transforming raw notification feeds data into a desired output.
- * @param {object} data - an array of objects, where each object contains following properties: 
- * type @type {string} (Comment or Like),
- * post @type {object} (id, title),
- * user @type {object} (id, name)
- * @param postId - postId
+ * @param {Array} data - an array of objects, where each object contains following properties: type (Comment or Like), post (id, title), user (id, name)
+ * @param {String} postId - an id of the post
  * @returns a list of objects, where each objects has the following fields:
- * Title @type {string}, 
- * Like @type {array} or @type {null}
- * Comment @type {array} or @type {null}
+ * @type {String} Title
+ * @type {Array || null} Like
+ * @type {Array || null} Comment
  */
 function processFeedsData(data, postId) {
   const groupByPostIdAndType = ramdaUtils.groupByMany([
@@ -41,11 +38,14 @@ function processFeedsData(data, postId) {
       return null
     }
 
-    return ramdaUtils.objReducer([
-      R.objOf('Title', getTitle()),
-      R.objOf('Like', getLikes()),
-      R.objOf('Comment', getComments())
-    ])
+    if (!obj) {
+      return null
+    } else
+      return ramdaUtils.objReducer([
+        R.objOf('Title', getTitle()),
+        R.objOf('Like', getLikes()),
+        R.objOf('Comment', getComments())
+      ])
   }
 
   return R.pipe(groupByPostIdAndType, getDataByPostId, transformObject)(data)
