@@ -1,7 +1,11 @@
 {
   "name": "techcr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Small production-close node.js app",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Esanim/techcr.git"
+  },
   "main": "app/app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test node_modules/.bin/nyc node --harmony node_modules/jest/bin/jest",
