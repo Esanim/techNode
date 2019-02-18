@@ -8,12 +8,15 @@
   },
   "main": "app/app.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test node_modules/.bin/nyc node --harmony node_modules/jest/bin/jest",
-    "cover": "nyc npm run test"
+    "test": "jest",
+    "coverage": "coverage.sh",
+    "lint": "eslint app"
   },
+  "pre-commit": ["lint", "test"],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel": "^6.23.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "cross-env": "^5.2.0",
@@ -24,18 +27,16 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-preset-es2017": "^6.24.1",
-    "coveralls": "^3.0.2",
     "eslint": "^5.13.0",
+    "istanbul": "^0.4.5",
     "jest": "^24.1.0",
     "jest-environment-node": "^24.0.0",
     "nyc": "^13.3.0",
+    "pre-commit": "^1.2.2",
+    "remap-istanbul": "^0.13.0",
     "supertest": "^3.4.2"
   },
   "nyc": {
-    "reporter": [
-      "lcov",
-      "text",
-      "html"
-    ]
+    "reporter": ["lcov", "text", "html"]
   }
 }
